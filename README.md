@@ -1,7 +1,7 @@
 # poly-on-fire-cookies
 Polymer Firebase component that uses cookies. This was a trial and error app for me, may not be useful for others.
 
-#Motives
+# Motives
 This project is for testing the iron-cookie element, one of several listed
 on webcomponents.org in January 2018.
 
