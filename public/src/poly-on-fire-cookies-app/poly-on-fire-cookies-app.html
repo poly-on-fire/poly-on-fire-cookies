@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-cookie/iron-cookie.html">
+
+<dom-module id="poly-on-fire-cookies-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <p> This page is for testing the iron-cookie element, one of several listed
+      on webcomponents.org in January 2018.
+      <br>
+      It was chosen for testing primarily because it was the only one written in
+      Polymer2. :) May not be the best criteria, but I don't know much about cookies
+      so if this works for my minimal needs, so be it</p>
+
+    <hr>
+
+		<iron-cookie id="demo" name="demo" value="{{value}}" uri-safe></iron-cookie>
+		<p>
+			<b>Enter the value to store in a cookie:</b>
+			<input id='foo' value="{{value::input}}">
+		</p>
+		<p><b>Current cookie value:</b> {{value}}</p>
+		<p>Reload the page to verify that the value was in fact saved.</p>
+    <button raised on-click="_done">Populate with object</button>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolyOnFireCookiesApp extends Polymer.Element {
+      static get is() { return 'poly-on-fire-cookies-app'; }
+
+      _done(event) {
+        this.$.demo.value = this.randomObjectString();
+        console.log("done");
+      }
+
+      randomObjectString(){
+        return JSON.stringify(this.randomObject());
+      }
+
+      randomObject(){
+        return {
+          "my":{
+            "thing": this.randomString(),
+            "stuff": this.randomString()
+          }
+        }
+      }
+
+      randomString(){
+        return Math.random().toString(36).substr(2, 5);
+      }
+    }
+
+    window.customElements.define(PolyOnFireCookiesApp.is, PolyOnFireCookiesApp);
+  </script>
+</dom-module>
